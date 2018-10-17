@@ -40,7 +40,7 @@ import java.util.WeakHashMap;
 
 @SpringBootApplication
 @LineMessageHandler
-public class EchoApplication {
+public class EchoApplication implements LineMessagingClient {
 	public static void main(String[] args) {
 		SpringApplication.run(EchoApplication.class, args);
 	}
