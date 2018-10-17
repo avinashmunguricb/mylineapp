@@ -208,6 +208,7 @@ subprojects {
     checkstyle {
         configProperties = [projectDir: rootProject.projectDir]
         toolVersion = '8.12'
+        ignoreFailures = true
     }
     
     compileJava {
