@@ -53,9 +53,10 @@ public class EchoApplication {
 		String tagName = " ==>Saahir ";
 		stringBuilder.append(messageText);
 		stringBuilder.append(tagName);
+		
 		String originalMessageText = event.getMessage().getText();
 		String replyBotMessage = botReplies(originalMessageText);
-		return new TextMessage(replyBotMessage);
+		return new TextMessage(event.getSender());
 	}
 
 	@EventMapping
