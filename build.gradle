@@ -93,7 +93,7 @@ subprojects {
     ext['okhttp3.version'] = '3.11.0'
     
     findbugs {
-        toolVersion = "2.0.1"
+        toolVersion = "3.0.0"
         sourceSets = [sourceSets.main]
         ignoreFailures = true
         reportsDir = file("$project.buildDir/findbugsReports")
