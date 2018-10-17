@@ -66,7 +66,6 @@ public class EchoApplication {
 		    userProfileResponse = client.getProfile("Uddc14c99497b8f4366b4b01f413084a1").get();
 		} catch (InterruptedException | ExecutionException e) {
 		    e.printStackTrace();
-		    return;
 		}
 
 		System.out.println(userProfileResponse.getUserId());
