@@ -70,7 +70,7 @@ public class EchoApplication {
 		mapA.put("Document", "The document is in drawer 5");
 		mapA.put("Thank you", "Your welcome");
 		
-		for(String myKey : mapA.values()) {
+		for(String myKey : mapA.keySet()) {
 			if(originalMessage.contains(myKey)) {
 				botReplyMessage = mapA.get(myKey);
 				break;
