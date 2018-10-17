@@ -123,6 +123,21 @@ public class EchoApplication {
 	}
 	
 	public void sendToSalesforce() {
+		
+		String USERNAME     = "saahir@intnet.mu.mytrailhead";
+	    String PASSWORD     = "ShahTrailhead_000KHB1uHYpTtlhUCcOCNbU9BVar";
+	    String LOGINURL     = "https://login.salesforce.com";
+	    String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
+	    String CLIENTID     = "3MVG9fTLmJ60pJ5LGPsq1bC62J9xkMwmkWqhBCllwqD7oLpqFThCbmvShnkWqMp6ZYB6HBp.gRjuKiQWeRhPr";
+	    String CLIENTSECRET = "3160755402294534733";
+		
+	    String REST_ENDPOINT = "/services/data" ;
+	    String API_VERSION = "/v43.0" ;
+	    String baseUri;
+	    Header oauthHeader;
+	    Header prettyPrintHeader = new BasicHeader("X-PrettyPrint", "1");
+	    String contactId ;
+	    
 		HttpClient httpclient = HttpClientBuilder.create().build();
 		 
         // Assemble the login request URL
