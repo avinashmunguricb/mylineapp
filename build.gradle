@@ -102,9 +102,7 @@ subprojects {
         reportLevel = "high"
         visitors = ["FindSqlInjection", "SwitchFallthrough"]
         omitVisitors = ["FindNonShortCircuit"]
-        includeFilter = file("$rootProject.projectDir/config/findbugs/includeFilter.xml")
         excludeFilter = file("$rootProject.projectDir/config/findbugs/excludeFilter.xml")
-        excludeBugsFilter = file("$rootProject.projectDir/config/findbugs/excludeBugsFilter.xml")
     }
 
     dependencyManagement {
