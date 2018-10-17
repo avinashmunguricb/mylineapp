@@ -34,7 +34,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.puppycrawl.tools:checkstyle:8.12'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
-        compile 'org.apache.httpcomponents:httpclient:4.5'
     }
 }
 
@@ -124,7 +123,7 @@ subprojects {
     dependencies {
         compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
         // http://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#configuration-metadata-annotation-processor
-
+        compile 'org.apache.httpcomponents:httpclient:4.5'
         testCompile 'com.google.guava:guava'
         testCompile 'com.github.stefanbirkner:system-rules'
         testCompile 'com.squareup.okhttp3:mockwebserver'
