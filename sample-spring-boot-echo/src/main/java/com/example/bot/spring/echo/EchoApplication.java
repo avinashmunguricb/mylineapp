@@ -27,6 +27,17 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.EnumMap;
+import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
+import java.util.Properties;
+import java.util.TreeMap;
+import java.util.WeakHashMap;
+
 @SpringBootApplication
 @LineMessageHandler
 public class EchoApplication {
@@ -42,12 +53,29 @@ public class EchoApplication {
 		String tagName = " ==>Saahir ";
 		stringBuilder.append(messageText);
 		stringBuilder.append(tagName);
-		final String originalMessageText = stringBuilder.toString();
-		return new TextMessage(originalMessageText);
+		String originalMessageText = event.getMessage().getText();
+		String replyBotMessage = botReplies(originalMessageText);
+		return new TextMessage(replyBotMessage);
 	}
 
 	@EventMapping
 	public void handleDefaultMessageEvent(Event event) {
 		System.out.println("event: " + event);
+	}
+	
+	public String botReplies(String originalMessage) {
+		String botReplyMessage = "";
+		java.util.Map<String, String> mapA = new HashMap<>();
+		mapA.put("Hello", "Hello, How can i help you ?");
+		mapA.put("Document", "The document is in drawer 5");
+		mapA.put("Thank you", "Your welcome");
+		
+		for(String myKey : mapA.values()) {
+			if(originalMessage.contains(myKey)) {
+				botReplyMessage = mapA.get(myKey);
+				break;
+			}
+		}		
+		return botReplyMessage;
 	}
 }
