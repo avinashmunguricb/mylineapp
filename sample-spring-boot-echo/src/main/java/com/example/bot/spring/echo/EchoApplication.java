@@ -58,7 +58,20 @@ public class EchoApplication {
 		String replyBotMessage = botReplies(originalMessageText);
 		final String followedUserId = event.getSource().getUserId();
 		
-		return new TextMessage(followedUserId);
+
+		final UserProfileResponse userProfileResponse;
+		try {
+		    userProfileResponse = client.getProfile("Uddc14c99497b8f4366b4b01f413084a1").get();
+		} catch (InterruptedException | ExecutionException e) {
+		    e.printStackTrace();
+		    return;
+		}
+
+		System.out.println(userProfileResponse.getUserId());
+		System.out.println(userProfileResponse.getDisplayName());
+		System.out.println(userProfileResponse.getPictureUrl());
+		
+		return new TextMessage(userProfileResponse.getDisplayName());
 	}
 
 	@EventMapping
