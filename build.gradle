@@ -67,6 +67,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'com.github.spotbugs'
+    apply plugin: "findbugs"
     apply plugin: 'propdeps'
     apply plugin: 'propdeps-maven'
     apply plugin: 'propdeps-idea'
@@ -90,6 +91,21 @@ subprojects {
 
     ext['guava.version'] = '26.0-jre'
     ext['okhttp3.version'] = '3.11.0'
+    
+    findbugs {
+        toolVersion = "2.0.1"
+        sourceSets = [sourceSets.main]
+        ignoreFailures = true
+        reportsDir = file("$project.buildDir/findbugsReports")
+        effort = "max"
+        showProgress = true
+        reportLevel = "high"
+        visitors = ["FindSqlInjection", "SwitchFallthrough"]
+        omitVisitors = ["FindNonShortCircuit"]
+        includeFilter = file("$rootProject.projectDir/config/findbugs/includeFilter.xml")
+        excludeFilter = file("$rootProject.projectDir/config/findbugs/excludeFilter.xml")
+        excludeBugsFilter = file("$rootProject.projectDir/config/findbugs/excludeBugsFilter.xml")
+    }
 
     dependencyManagement {
         imports {
