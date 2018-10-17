@@ -30,24 +30,24 @@ import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 @SpringBootApplication
 @LineMessageHandler
 public class EchoApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(EchoApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(EchoApplication.class, args);
+	}
 
-    @EventMapping
-    public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
-        System.out.println("event: " + event);
-        StringBuilder stringBuilder = new StringBuilder();
+	@EventMapping
+	public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
+		System.out.println("event: " + event);
+		StringBuilder stringBuilder = new StringBuilder();
 		String messageText = event.getMessage().getText();
 		String tagName = " ==>Saahir ";
 		stringBuilder.append(messageText);
 		stringBuilder.append(tagName);
 		final String originalMessageText = stringBuilder.toString();
-        return new TextMessage(originalMessageText);
-    }
+		return new TextMessage(originalMessageText);
+	}
 
-    @EventMapping
-    public void handleDefaultMessageEvent(Event event) {
-        System.out.println("event: " + event);
-    }
+	@EventMapping
+	public void handleDefaultMessageEvent(Event event) {
+		System.out.println("event: " + event);
+	}
 }
