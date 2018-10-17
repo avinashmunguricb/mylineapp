@@ -64,14 +64,14 @@ public class EchoApplication {
 	}
 	
 	public String botReplies(String originalMessage) {
-		String botReplyMessage = "";
+		String botReplyMessage = "Command not recognized !";
 		java.util.Map<String, String> mapA = new HashMap<>();
 		mapA.put("Hello", "Hello, How can i help you ?");
 		mapA.put("Document", "The document is in drawer 5");
 		mapA.put("Thank you", "Your welcome");
 		
 		for(String myKey : mapA.keySet()) {
-			if(originalMessage.contains(myKey)) {
+			if(originalMessage.toLowerCase().contains(myKey.toLowerCase())) {
 				botReplyMessage = mapA.get(myKey);
 				break;
 			}
