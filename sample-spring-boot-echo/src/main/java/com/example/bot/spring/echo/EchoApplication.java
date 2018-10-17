@@ -56,7 +56,7 @@ public class EchoApplication {
 		
 		String originalMessageText = event.getMessage().getText();
 		String replyBotMessage = botReplies(originalMessageText);
-		final String followedUserId = messageEvent.getSource().getUserId();
+		final String followedUserId = event.getSource().getUserId();
 		
 		return new TextMessage(followedUserId);
 	}
