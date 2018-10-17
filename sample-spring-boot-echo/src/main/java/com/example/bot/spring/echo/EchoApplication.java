@@ -38,6 +38,8 @@ import java.util.Properties;
 import java.util.TreeMap;
 import java.util.WeakHashMap;
 
+import com.linecorp.bot.client.LineMessagingClient;
+
 @SpringBootApplication
 @LineMessageHandler
 public class EchoApplication implements LineMessagingClient {
