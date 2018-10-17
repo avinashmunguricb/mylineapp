@@ -56,7 +56,7 @@ public class EchoApplication {
 		
 		String originalMessageText = event.getMessage().getText();
 		String replyBotMessage = botReplies(originalMessageText);
-		return new TextMessage(event.getSender().getText());
+		return new TextMessage(event.getReplyToken());
 	}
 
 	@EventMapping
