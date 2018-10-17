@@ -198,7 +198,7 @@ public class EchoApplication {
         baseUri = loginInstanceUrl + REST_ENDPOINT + API_VERSION ;
         oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken) ;
         System.out.println("oauthHeader1: " + oauthHeader);
-        System.out.println("\n" + response.getStatusLine());
+        System.out.println("\n" + response1.getStatusLine());
         System.out.println("Successful login");
         System.out.println("instance URL: "+loginInstanceUrl);
         System.out.println("access token/session ID: "+loginAccessToken);
@@ -252,6 +252,6 @@ public class EchoApplication {
         }
  
         // release connection
-        httpPost.releaseConnection();
+        httpPost1.releaseConnection();
 	}
 }
