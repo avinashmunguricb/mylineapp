@@ -68,7 +68,7 @@ public class EchoApplication {
 		        .build();
 		UserProfileResponse userProfileResponse = null;
 		try {
-		    userProfileResponse = client.getProfile("Uddc14c99497b8f4366b4b01f413084a1").get();
+		    userProfileResponse = client.getProfile(followedUserId).get();
 		    returnMessage = userProfileResponse.getDisplayName();
 		} catch (InterruptedException | ExecutionException e) {
 		    e.printStackTrace();
@@ -77,8 +77,8 @@ public class EchoApplication {
 		//System.out.println(userProfileResponse.getUserId());
 		//System.out.println(userProfileResponse.getDisplayName());
 		//System.out.println(userProfileResponse.getPictureUrl());
-		
-		return new TextMessage(returnMessage);
+		SendToSalesforce insertContact = new SendToSalesforce();
+		return new TextMessage(replyBotMessage);
 	}
 
 	@EventMapping
