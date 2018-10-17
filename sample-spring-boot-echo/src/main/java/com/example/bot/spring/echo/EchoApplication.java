@@ -26,7 +26,7 @@ import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
-
+import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.HashMap;
@@ -60,12 +60,13 @@ public class EchoApplication {
 
 	@EventMapping
 	public void handleDefaultMessageEvent(Event event) {
+		
 		System.out.println("event: " + event);
 	}
 	
 	public String botReplies(String originalMessage) {
 		String botReplyMessage = "Command not recognized !";
-		java.util.Map<String, String> mapA = new HashMap<>();
+		Map<String, String> mapA = new HashMap<>();
 		mapA.put("Hello", "Hello, How can i help you ?");
 		mapA.put("Document", "The document is in drawer 5");
 		mapA.put("Thank you", "Your welcome");
