@@ -52,6 +52,7 @@ public class EchoApplication {
 	@EventMapping
 	public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
 		System.out.println("event: " + event);
+		String returnMessage = "test";
 		StringBuilder stringBuilder = new StringBuilder();
 		String messageText = event.getMessage().getText();
 		String tagName = " ==>Saahir ";
@@ -62,21 +63,22 @@ public class EchoApplication {
 		String replyBotMessage = botReplies(originalMessageText);
 		final String followedUserId = event.getSource().getUserId();
 		
-		final LineMessagingClient client = LineMessagingClient
+		LineMessagingClient client = LineMessagingClient
 		        .builder("KvPdRVx9Zhye3c74GhvJ2u6HtyUgJFuZSKU22wD8IfodRKhBsw4fdkSey0q/xsa/VuPBrA9shefDEn49yb4xo8Yy6sPF1izTfsgnfmm1aU4hrZgBOQasXMZwHvRdFcvupcGeFxZd1/JeVrWd6V54QwdB04t89/1O/w1cDnyilFU=")
 		        .build();
-		final UserProfileResponse userProfileResponse;
+		UserProfileResponse userProfileResponse = null;
 		try {
 		    userProfileResponse = client.getProfile("Uddc14c99497b8f4366b4b01f413084a1").get();
+		    returnMessage = userProfileResponse.getDisplayName();
 		} catch (InterruptedException | ExecutionException e) {
 		    e.printStackTrace();
 		}
 
-		System.out.println(userProfileResponse.getUserId());
-		System.out.println(userProfileResponse.getDisplayName());
-		System.out.println(userProfileResponse.getPictureUrl());
+		//System.out.println(userProfileResponse.getUserId());
+		//System.out.println(userProfileResponse.getDisplayName());
+		//System.out.println(userProfileResponse.getPictureUrl());
 		
-		return new TextMessage(replyBotMessage);
+		return new TextMessage(returnMessage);
 	}
 
 	@EventMapping
