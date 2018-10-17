@@ -37,6 +37,9 @@ import java.util.LinkedHashMap;
 import java.util.Properties;
 import java.util.TreeMap;
 import java.util.WeakHashMap;
+import com.linecorp.bot.client.LineMessagingClientImpl;
+import com.linecorp.bot.client.LineMessagingClient;
+import com.linecorp.bot.client.LineMessagingService;
 
 @SpringBootApplication
 @LineMessageHandler
