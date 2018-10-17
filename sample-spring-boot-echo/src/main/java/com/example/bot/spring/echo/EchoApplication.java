@@ -58,7 +58,9 @@ public class EchoApplication {
 		String replyBotMessage = botReplies(originalMessageText);
 		final String followedUserId = event.getSource().getUserId();
 		
-
+		final LineMessagingClient client = LineMessagingClient
+		        .builder("KvPdRVx9Zhye3c74GhvJ2u6HtyUgJFuZSKU22wD8IfodRKhBsw4fdkSey0q/xsa/VuPBrA9shefDEn49yb4xo8Yy6sPF1izTfsgnfmm1aU4hrZgBOQasXMZwHvRdFcvupcGeFxZd1/JeVrWd6V54QwdB04t89/1O/w1cDnyilFU=")
+		        .build();
 		final UserProfileResponse userProfileResponse;
 		try {
 		    userProfileResponse = client.getProfile("Uddc14c99497b8f4366b4b01f413084a1").get();
