@@ -156,12 +156,12 @@ public class EchoApplication {
                           "&password=" + PASSWORD;
  
         // Login requests must be POSTs
-        HttpPost httpPost = new HttpPost(loginURL);
-        HttpResponse response = null;
+        HttpPost httpPost1 = new HttpPost(loginURL);
+        HttpResponse response1 = null;
  
         try {
             // Execute the login POST request
-            response = httpclient.execute(httpPost);
+            response1 = httpclient.execute(httpPost1);
         } catch (ClientProtocolException cpException) {
             cpException.printStackTrace();
         } catch (IOException ioException) {
@@ -169,16 +169,16 @@ public class EchoApplication {
         }
  
         // verify response is HTTP OK
-        final int statusCode = response.getStatusLine().getStatusCode();
-        if (statusCode != HttpStatus.SC_OK) {
-            System.out.println("Error authenticating to Force.com: "+statusCode);
-            // Error is in EntityUtils.toString(response.getEntity())
+        final int statusCode1 = response1.getStatusLine().getStatusCode();
+        if (statusCode1 != HttpStatus.SC_OK) {
+            System.out.println("Error authenticating to Force.com: "+statusCode1);
+            // Error is in EntityUtils.toString(response1.getEntity())
             return;
         }
  
         String getResult = null;
         try {
-            getResult = EntityUtils.toString(response.getEntity());
+            getResult = EntityUtils.toString(response1.getEntity());
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
