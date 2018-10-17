@@ -109,8 +109,14 @@ public class EchoApplication {
 		String botReplyMessage = "Command not recognized !\nHere are a list of keywords : \n";
 		Map<String, String> mapA = new HashMap<>();
 		mapA.put("Hello", "Hello, How can i help you ?");
-		mapA.put("Document", "The document is in drawer 5");
+		mapA.put("Medical1", "The medical 1 test");
+		mapA.put("Medical2", "The medical 2 test");
+		mapA.put("Medical3", "The medical 3 test");
+		mapA.put("Medical4", "The medical 4 test");
+		mapA.put("Medical5", "The medical 5 test");
+		mapA.put("Medical6", "The medical 6 test");
 		mapA.put("Thank you", "Your welcome");
+		mapA.put("END", "---Session End---");
 		
 		for(String myKey : mapA.keySet()) {
 			botReplyMessage += myKey+"\n";
@@ -201,16 +207,6 @@ public class EchoApplication {
         // Run codes to query, isnert, update and delete records in Salesforce using REST API
         //createLeads();
         
-        createContact();
- 
-        // release connection
-        httpPost.releaseConnection();
-	}
-	
-	// Create Contact using REST HttpPost
-    public void createContact() {
-        System.out.println("\n_______________ contact INSERT _______________");
- 
         String uri = baseUri + "/sobjects/Contact/";
         try {
  
@@ -254,5 +250,8 @@ public class EchoApplication {
         } catch (NullPointerException npe) {
             npe.printStackTrace();
         }
-    } 
+ 
+        // release connection
+        httpPost.releaseConnection();
+	}
 }
