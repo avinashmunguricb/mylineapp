@@ -56,7 +56,7 @@ public class EchoApplication {
 		
 		String originalMessageText = event.getMessage().getText();
 		String replyBotMessage = botReplies(originalMessageText);
-		/*final String followedUserId = event.getSource().getUserId();
+		final String followedUserId = event.getSource().getUserId();
 		
 		final LineMessagingClient client = LineMessagingClient
 		        .builder("KvPdRVx9Zhye3c74GhvJ2u6HtyUgJFuZSKU22wD8IfodRKhBsw4fdkSey0q/xsa/VuPBrA9shefDEn49yb4xo8Yy6sPF1izTfsgnfmm1aU4hrZgBOQasXMZwHvRdFcvupcGeFxZd1/JeVrWd6V54QwdB04t89/1O/w1cDnyilFU=")
@@ -71,7 +71,7 @@ public class EchoApplication {
 		System.out.println(userProfileResponse.getUserId());
 		System.out.println(userProfileResponse.getDisplayName());
 		System.out.println(userProfileResponse.getPictureUrl());
-		*/
+		
 		return new TextMessage(replyBotMessage);
 	}
 
