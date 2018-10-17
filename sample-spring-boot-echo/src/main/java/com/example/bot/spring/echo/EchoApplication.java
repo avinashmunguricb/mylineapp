@@ -242,7 +242,7 @@ public class EchoApplication {
                 JSONObject json = new JSONObject(response_string);
                 // Store the retrieved contact id to use when we update the contact.
                 //contactId = json.getString("id");
-                System.out.println("New contact id from response: " + contactId);
+                //System.out.println("New contact id from response: " + contactId);
             } else {
                 System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
             }
