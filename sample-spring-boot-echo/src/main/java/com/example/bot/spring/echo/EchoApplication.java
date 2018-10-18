@@ -60,6 +60,7 @@ import org.json.JSONException;
 @LineMessageHandler
 public class EchoApplication {
 	String fullMessage = "";
+	
 	static final String USERNAME     = "saahir@intnet.mu.mytrailhead";
     static final String PASSWORD     = "ShahTrailhead_000KHB1uHYpTtlhUCcOCNbU9BVar";
     static final String LOGINURL     = "https://login.salesforce.com";
