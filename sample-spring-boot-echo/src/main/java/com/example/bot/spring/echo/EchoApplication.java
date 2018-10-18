@@ -91,7 +91,7 @@ public class EchoApplication {
 		
 		fullMessage += originalMessageText + " : " + replyBotMessage + "\n";
 		
-		if(originalMessageText.toLowerCase().equalsIgnoreCase('end')) {
+		if(originalMessageText.toLowerCase().equalsIgnoreCase("end")) {
 			//sendToSalesforce();
 			replyBotMessage = fullMessage;
 		}
