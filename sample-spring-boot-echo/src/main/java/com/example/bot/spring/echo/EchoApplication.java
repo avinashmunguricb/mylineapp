@@ -59,6 +59,7 @@ import org.json.JSONException;
 @SpringBootApplication
 @LineMessageHandler
 public class EchoApplication {
+	String fullMessage = "";
 	public static void main(String[] args) {
 		SpringApplication.run(EchoApplication.class, args);
 	}
@@ -87,14 +88,13 @@ public class EchoApplication {
 		} catch (InterruptedException | ExecutionException e) {
 		    e.printStackTrace();
 		}
-
-		//System.out.println(userProfileResponse.getUserId());
-		//System.out.println(userProfileResponse.getDisplayName());
-		//System.out.println(userProfileResponse.getPictureUrl());
 		
+		fullMessage += originalMessageText + " : " + replyBotMessage + "\n";
 		
-		sendToSalesforce();
-		
+		if(originalMessageText.toLowerCase().equalsIgnoreCase('end')) {
+			//sendToSalesforce();
+			replyBotMessage = fullMessage;
+		}
 		
 		return new TextMessage(replyBotMessage);
 	}
