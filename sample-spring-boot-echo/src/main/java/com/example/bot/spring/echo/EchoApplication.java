@@ -55,6 +55,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.JSONException;
+import java.util.*;
 
 @SpringBootApplication
 @LineMessageHandler
@@ -272,12 +273,11 @@ public class EchoApplication {
         String uri = baseUri + "/sobjects/Attachment/";
         try {
         	// Encode data on your side using BASE64
-			byte[] bytesEncoded = Base64.encodeBase64(conversation.getBytes());
-			System.out.println("encoded value is " + new String(bytesEncoded));   
+        	String encoded = Base64.getEncoder().encodeToString(conversation.getBytes());   
 			
             JSONObject attm = new JSONObject();
             attm.put("Name", "MyConversation.txt");
-            attm.put("Body", bytesEncoded);
+            attm.put("Body", encoded);
             attm.put("parentId", contactId);
  
             //Construct the objects needed for the request
