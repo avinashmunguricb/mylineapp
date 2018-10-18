@@ -67,7 +67,7 @@ public class EchoApplication {
 	@EventMapping
 	public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
 		System.out.println("event: " + event);
-		String returnMessage = "test";
+		String senderName = "Sender";
 		StringBuilder stringBuilder = new StringBuilder();
 		String messageText = event.getMessage().getText();
 		String tagName = " ==>Saahir ";
@@ -84,16 +84,16 @@ public class EchoApplication {
 		UserProfileResponse userProfileResponse = null;
 		try {
 		    userProfileResponse = client.getProfile(followedUserId).get();
-		    returnMessage = userProfileResponse.getDisplayName();
+		    senderName = userProfileResponse.getDisplayName();
 		} catch (InterruptedException | ExecutionException e) {
 		    e.printStackTrace();
 		}
 		
-		fullMessage += originalMessageText + " : " + replyBotMessage + "\n";
+		fullMessage += senderName + " : " + originalMessageText + "\n" + "Bot : " + replyBotMessage + "\n\n";
 		
 		if(originalMessageText.toLowerCase().equalsIgnoreCase("end")) {
 			//sendToSalesforce();
-			replyBotMessage = fullMessage;
+			replyBotMessage += "\n\n" + fullMessage;
 		}
 		
 		return new TextMessage(replyBotMessage);
