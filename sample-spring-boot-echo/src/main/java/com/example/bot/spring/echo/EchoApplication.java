@@ -108,7 +108,7 @@ public class EchoApplication {
 		fullMessage += senderName + " : " + originalMessageText + "\n" + "Bot : " + replyBotMessage + "\n\n";
 		
 		if(originalMessageText.toLowerCase().equalsIgnoreCase("end")) {
-			sendToSalesforce(followedUserId);
+			sendToSalesforce(followedUserId, fullMessage);
 			replyBotMessage += "\n\n" + fullMessage;
 		}
 		
@@ -144,7 +144,7 @@ public class EchoApplication {
 		return botReplyMessage;
 	}
 	
-	public void sendToSalesforce(String lineUserId) {
+	public void sendToSalesforce(String lineUserId, String conversation) {
 		
 		HttpClient httpclient = HttpClientBuilder.create().build();
 		 
@@ -209,14 +209,14 @@ public class EchoApplication {
         // Run codes to query, isnert, update and delete records in Salesforce using REST API
         //createLeads();
         
-        createContact(lineUserId);
+        createContact(lineUserId, conversation);
  
         // release connection
         httpPost.releaseConnection();
 	}
 	
 	// Create Contact using REST HttpPost
-    public static void createContact(String lineUserId) {
+    public static void createContact(String lineUserId, String conversation) {
         System.out.println("\n_______________ contact INSERT _______________");
  
         String uri = baseUri + "/sobjects/Contact/";
@@ -251,7 +251,8 @@ public class EchoApplication {
                 JSONObject json = new JSONObject(response_string);
                 // Store the retrieved contact id to use when we update the contact.
                 contactId = json.getString("id");
-                System.out.println("New contact id from response: " + contactId);
+                createAttachment(contactId, conversation);
+                
             } else {
                 System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
             }
@@ -263,5 +264,48 @@ public class EchoApplication {
         } catch (NullPointerException npe) {
             npe.printStackTrace();
         }
-    }    
+    }   
+    
+    // Insert attachment
+    public static void createAttachment(String contactId, String conversation) {
+ 
+        String uri = baseUri + "/sobjects/Attachment/";
+        try {
+            JSONObject attm = new JSONObject();
+            attm.put("Name", "MyConversation.txt");
+            attm.put("Body", conversation);
+            attm.put("parentId", contactId);
+ 
+            //Construct the objects needed for the request
+            HttpClient httpClient = HttpClientBuilder.create().build();
+ 
+            HttpPost httpPost = new HttpPost(uri);
+            httpPost.addHeader(oauthHeader);
+            httpPost.addHeader(prettyPrintHeader);
+            // The message we are going to post
+            StringEntity body = new StringEntity(attm.toString(1));
+            body.setContentType("application/json");
+            httpPost.setEntity(body);
+ 
+            //Make the request
+            HttpResponse response = httpClient.execute(httpPost);
+ 
+            //Process the results
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == 201) {
+                String response_string = EntityUtils.toString(response.getEntity());
+                JSONObject json = new JSONObject(response_string);
+                // Store the retrieved contact id to use when we update the contact.
+            } else {
+                System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
+            }
+        } catch (JSONException e) {
+            System.out.println("Issue creating JSON or processing results");
+            e.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+    } 
 }
