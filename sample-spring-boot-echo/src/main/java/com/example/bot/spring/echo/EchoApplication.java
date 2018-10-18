@@ -291,9 +291,9 @@ public class EchoApplication {
             apiRequest.Headers.Add("Authorization", "Bearer " + loginAccessToken);
             apiRequest.Content = addAttachmentBody;
 
-            HttpResponseMessage apiCallResponse = await apiCallClient.SendAsync(apiRequest);
+            HttpResponseMessage apiCallResponse = apiCallClient.send(apiRequest);
 
-            String requestResponse = await apiCallResponse.Content.ReadAsStringAsync();
+            //String requestResponse = apiCallResponse.Content.ReadAsStringAsync();
             
             /*
         	
