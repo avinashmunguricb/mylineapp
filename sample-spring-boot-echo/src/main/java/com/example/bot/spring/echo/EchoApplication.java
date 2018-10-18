@@ -60,6 +60,21 @@ import org.json.JSONException;
 @LineMessageHandler
 public class EchoApplication {
 	String fullMessage = "";
+	static final String USERNAME     = "saahir@intnet.mu.mytrailhead";
+    static final String PASSWORD     = "ShahTrailhead_000KHB1uHYpTtlhUCcOCNbU9BVar";
+    static final String LOGINURL     = "https://login.salesforce.com";
+    static final String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
+    static final String CLIENTID     = "3MVG9fTLmJ60pJ5LGPsq1bC62J9xkMwmkWqhBCllwqD7oLpqFThCbmvShnkWqMp6ZYB6HBp.gRjuKiQWeRhPr";
+    static final String CLIENTSECRET = "3160755402294534733";
+	
+    private static String REST_ENDPOINT = "/services/data" ;
+    private static String API_VERSION = "/v43.0" ;
+    private static String baseUri;
+    private static Header oauthHeader;
+    private static Header prettyPrintHeader = new BasicHeader("X-PrettyPrint", "1");
+    private static String leadId ;
+    private static String contactId ;
+    
 	public static void main(String[] args) {
 		SpringApplication.run(EchoApplication.class, args);
 	}
@@ -92,7 +107,7 @@ public class EchoApplication {
 		fullMessage += senderName + " : " + originalMessageText + "\n" + "Bot : " + replyBotMessage + "\n\n";
 		
 		if(originalMessageText.toLowerCase().equalsIgnoreCase("end")) {
-			//sendToSalesforce();
+			sendToSalesforce();
 			replyBotMessage += "\n\n" + fullMessage;
 		}
 		
@@ -130,20 +145,6 @@ public class EchoApplication {
 	
 	public void sendToSalesforce() {
 		
-		String USERNAME     = "saahir@intnet.mu.mytrailhead";
-	    String PASSWORD     = "ShahTrailhead_000KHB1uHYpTtlhUCcOCNbU9BVar";
-	    String LOGINURL     = "https://login.salesforce.com";
-	    String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
-	    String CLIENTID     = "3MVG9fTLmJ60pJ5LGPsq1bC62J9xkMwmkWqhBCllwqD7oLpqFThCbmvShnkWqMp6ZYB6HBp.gRjuKiQWeRhPr";
-	    String CLIENTSECRET = "3160755402294534733";
-		
-	    String REST_ENDPOINT = "/services/data" ;
-	    String API_VERSION = "/v43.0" ;
-	    String baseUri;
-	    Header oauthHeader;
-	    Header prettyPrintHeader = new BasicHeader("X-PrettyPrint", "1");
-	    String contactId ;
-	    
 		HttpClient httpclient = HttpClientBuilder.create().build();
 		 
         // Assemble the login request URL
@@ -156,12 +157,12 @@ public class EchoApplication {
                           "&password=" + PASSWORD;
  
         // Login requests must be POSTs
-        HttpPost httpPost1 = new HttpPost(loginURL);
-        HttpResponse response1 = null;
+        HttpPost httpPost = new HttpPost(loginURL);
+        HttpResponse response = null;
  
         try {
             // Execute the login POST request
-            response1 = httpclient.execute(httpPost1);
+            response = httpclient.execute(httpPost);
         } catch (ClientProtocolException cpException) {
             cpException.printStackTrace();
         } catch (IOException ioException) {
@@ -169,16 +170,16 @@ public class EchoApplication {
         }
  
         // verify response is HTTP OK
-        final int statusCode1 = response1.getStatusLine().getStatusCode();
-        if (statusCode1 != HttpStatus.SC_OK) {
-            System.out.println("Error authenticating to Force.com: "+statusCode1);
-            // Error is in EntityUtils.toString(response1.getEntity())
+        final int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode != HttpStatus.SC_OK) {
+            System.out.println("Error authenticating to Force.com: "+statusCode);
+            // Error is in EntityUtils.toString(response.getEntity())
             return;
         }
  
         String getResult = null;
         try {
-            getResult = EntityUtils.toString(response1.getEntity());
+            getResult = EntityUtils.toString(response.getEntity());
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
@@ -198,7 +199,7 @@ public class EchoApplication {
         baseUri = loginInstanceUrl + REST_ENDPOINT + API_VERSION ;
         oauthHeader = new BasicHeader("Authorization", "OAuth " + loginAccessToken) ;
         System.out.println("oauthHeader1: " + oauthHeader);
-        System.out.println("\n" + response1.getStatusLine());
+        System.out.println("\n" + response.getStatusLine());
         System.out.println("Successful login");
         System.out.println("instance URL: "+loginInstanceUrl);
         System.out.println("access token/session ID: "+loginAccessToken);
@@ -207,6 +208,16 @@ public class EchoApplication {
         // Run codes to query, isnert, update and delete records in Salesforce using REST API
         //createLeads();
         
+        createContact();
+ 
+        // release connection
+        httpPost.releaseConnection();
+	}
+	
+	// Create Contact using REST HttpPost
+    public static void createContact() {
+        System.out.println("\n_______________ contact INSERT _______________");
+ 
         String uri = baseUri + "/sobjects/Contact/";
         try {
  
@@ -237,8 +248,8 @@ public class EchoApplication {
                 String response_string = EntityUtils.toString(response.getEntity());
                 JSONObject json = new JSONObject(response_string);
                 // Store the retrieved contact id to use when we update the contact.
-                //contactId = json.getString("id");
-                //System.out.println("New contact id from response: " + contactId);
+                contactId = json.getString("id");
+                System.out.println("New contact id from response: " + contactId);
             } else {
                 System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
             }
@@ -250,8 +261,5 @@ public class EchoApplication {
         } catch (NullPointerException npe) {
             npe.printStackTrace();
         }
- 
-        // release connection
-        httpPost1.releaseConnection();
-	}
+    }    
 }
