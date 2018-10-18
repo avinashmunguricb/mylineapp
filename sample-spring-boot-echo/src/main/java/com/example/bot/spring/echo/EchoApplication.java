@@ -60,6 +60,7 @@ import org.json.JSONException;
 @LineMessageHandler
 public class EchoApplication {
 	String fullMessage = "";
+	String loginAccessToken = null;
 	
 	static final String USERNAME     = "saahir@intnet.mu.mytrailhead";
     static final String PASSWORD     = "ShahTrailhead_000KHB1uHYpTtlhUCcOCNbU9BVar";
@@ -186,7 +187,6 @@ public class EchoApplication {
         }
  
         JSONObject jsonObject = null;
-        String loginAccessToken = null;
         String loginInstanceUrl = null;
  
         try {
@@ -271,6 +271,32 @@ public class EchoApplication {
  
         String uri = baseUri + "/sobjects/Attachment/";
         try {
+        	//String pdf = Convert.ToBase64String(File.ReadAllBytes(/*Path to your pdf file*/));
+            //String accountId = "0011N00001EWqShQAL";
+            String name = "MyConversation.txt";
+
+            StringBuilder jsonData = new StringBuilder("{");
+            jsonData.Append("\"Name\" : \"" + name + "\",");
+            jsonData.Append("\"Body\" : \"" + conversation + "\",");
+            jsonData.Append("\"parentId\" : \"" + contactId + "\"");
+            jsonData.Append("}");
+
+            HttpContent addAttachmentBody = new StringContent(jsonData.ToString(), Encoding.UTF8, "application/json");
+
+            HttpClient apiCallClient = new HttpClient();
+            String restCallUrl = instance_url + "/services/data/v33.0/sobjects/attachment/";
+
+            HttpRequestMessage apiRequest = new HttpRequestMessage(HttpMethod.Post, restCallUrl);
+            apiRequest.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            apiRequest.Headers.Add("Authorization", "Bearer " + loginAccessToken);
+            apiRequest.Content = addAttachmentBody;
+
+            HttpResponseMessage apiCallResponse = await apiCallClient.SendAsync(apiRequest);
+
+            String requestResponse = await apiCallResponse.Content.ReadAsStringAsync();
+            
+            /*
+        	
             JSONObject attm = new JSONObject();
             attm.put("Name", "MyConversation.txt");
             attm.put("Body", conversation);
@@ -298,7 +324,7 @@ public class EchoApplication {
                 // Store the retrieved contact id to use when we update the contact.
             } else {
                 System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
-            }
+            }*/
         } catch (JSONException e) {
             System.out.println("Issue creating JSON or processing results");
             e.printStackTrace();
