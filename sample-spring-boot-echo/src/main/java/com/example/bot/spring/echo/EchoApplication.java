@@ -112,6 +112,7 @@ public class EchoApplication {
 		if(originalMessageText.toLowerCase().equalsIgnoreCase("end")) {
 			sendToSalesforce(followedUserId, fullMessage);
 			replyBotMessage += "\n\n" + fullMessage;
+			fullMessage = "";
 		}
 		
 		return new TextMessage(replyBotMessage);
