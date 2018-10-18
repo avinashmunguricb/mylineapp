@@ -295,6 +295,7 @@ public class EchoApplication {
             if (statusCode == 201) {
                 String response_string = EntityUtils.toString(response.getEntity());
                 JSONObject json = new JSONObject(response_string);
+                // Store the retrieved contact id to use when we update the contact.
             } else {
                 System.out.println("Insertion unsuccessful. Status code returned is " + statusCode);
             }
