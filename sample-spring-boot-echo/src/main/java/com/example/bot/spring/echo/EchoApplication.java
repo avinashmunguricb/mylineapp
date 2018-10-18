@@ -108,7 +108,7 @@ public class EchoApplication {
 		fullMessage += senderName + " : " + originalMessageText + "\n" + "Bot : " + replyBotMessage + "\n\n";
 		
 		if(originalMessageText.toLowerCase().equalsIgnoreCase("end")) {
-			sendToSalesforce();
+			sendToSalesforce(followedUserId);
 			replyBotMessage += "\n\n" + fullMessage;
 		}
 		
@@ -144,7 +144,7 @@ public class EchoApplication {
 		return botReplyMessage;
 	}
 	
-	public void sendToSalesforce() {
+	public void sendToSalesforce(String lineUserId) {
 		
 		HttpClient httpclient = HttpClientBuilder.create().build();
 		 
@@ -209,14 +209,14 @@ public class EchoApplication {
         // Run codes to query, isnert, update and delete records in Salesforce using REST API
         //createLeads();
         
-        createContact();
+        createContact(lineUserId);
  
         // release connection
         httpPost.releaseConnection();
 	}
 	
 	// Create Contact using REST HttpPost
-    public static void createContact() {
+    public static void createContact(String lineUserId) {
         System.out.println("\n_______________ contact INSERT _______________");
  
         String uri = baseUri + "/sobjects/Contact/";
@@ -226,6 +226,7 @@ public class EchoApplication {
             JSONObject contact = new JSONObject();
             contact.put("FirstName", "James");
             contact.put("LastName", "Bale");
+            contact.put("LineExternalId__c", lineUserId);
  
             System.out.println("JSON for contact record to be inserted:\n" + contact.toString(1));
  
