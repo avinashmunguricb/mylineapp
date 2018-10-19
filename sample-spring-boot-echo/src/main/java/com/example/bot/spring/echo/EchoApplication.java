@@ -115,6 +115,10 @@ public class EchoApplication {
 		    e.printStackTrace();
 		}
 		
+		if(conversationPerUserMap.containsKey(followedUserId)) {
+			fullMessage = conversationPerUserMap.get(followedUserId);
+		}
+		
 		fullMessage += senderName + " : " + originalMessageText + "\n" + "Bot : " + replyBotMessage + "\n\n";
 		conversationPerUserMap.put(followedUserId, fullMessage);
 		
