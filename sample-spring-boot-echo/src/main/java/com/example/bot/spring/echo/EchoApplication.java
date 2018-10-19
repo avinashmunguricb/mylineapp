@@ -62,6 +62,7 @@ import java.util.*;
 public class EchoApplication {
 	String fullMessage = "";
 	String loginAccessToken = null;
+	Map<String, String> conversationPerUserMap = new HashMap<>();
 	
 	static final String USERNAME     = "dirish.bhaugeerutty@salesforcedev.com";
     static final String PASSWORD     = "salesforceDev2018!!!sio3s5t7ahENh3zToFKUL5mzU";
@@ -115,11 +116,13 @@ public class EchoApplication {
 		}
 		
 		fullMessage += senderName + " : " + originalMessageText + "\n" + "Bot : " + replyBotMessage + "\n\n";
+		conversationPerUserMap.put(followedUserId, fullMessage);
 		
 		if(originalMessageText.toLowerCase().equalsIgnoreCase("end")) {
-			sendToSalesforce(followedUserId, fullMessage);
-			replyBotMessage += "\n\n" + fullMessage;
+			sendToSalesforce(followedUserId, conversationPerUserMap.get(followedUserId));
+			replyBotMessage += "\n\n" + conversationPerUserMap.get(followedUserId);
 			fullMessage = "";
+			conversationPerUserMap = new HashMap<>();
 		}
 		
 		return new TextMessage(replyBotMessage);
