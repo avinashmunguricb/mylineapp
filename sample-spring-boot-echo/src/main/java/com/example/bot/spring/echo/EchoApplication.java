@@ -126,7 +126,7 @@ public class EchoApplication {
 			sendToSalesforce(followedUserId, conversationPerUserMap.get(followedUserId));
 			replyBotMessage += "\n\n" + conversationPerUserMap.get(followedUserId);
 			fullMessage = "";
-			conversationPerUserMap = new HashMap<>();
+			conversationPerUserMap.put(followedUserId, fullMessage);
 		}
 		
 		return new TextMessage(replyBotMessage);
