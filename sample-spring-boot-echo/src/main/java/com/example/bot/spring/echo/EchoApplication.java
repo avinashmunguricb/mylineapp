@@ -94,11 +94,6 @@ public class EchoApplication {
 	public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
 		System.out.println("event: " + event);
 		String senderName = "Sender";
-		StringBuilder stringBuilder = new StringBuilder();
-		String messageText = event.getMessage().getText();
-		String tagName = " ==>Saahir ";
-		stringBuilder.append(messageText);
-		stringBuilder.append(tagName);
 		
 		String originalMessageText = event.getMessage().getText();
 		String replyBotMessage = botReplies(originalMessageText);
