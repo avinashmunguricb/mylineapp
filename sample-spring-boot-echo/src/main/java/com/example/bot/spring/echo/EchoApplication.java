@@ -64,19 +64,19 @@ public class EchoApplication {
 	String loginAccessToken = null;
 	Map<String, String> conversationPerUserMap = new HashMap<>();
 	
-	static final String USERNAME     = "dirish.bhaugeerutty@salesforcedev.com";
+	/*static final String USERNAME     = "dirish.bhaugeerutty@salesforcedev.com";
     static final String PASSWORD     = "salesforceDev2018!!!sio3s5t7ahENh3zToFKUL5mzU";
     static final String LOGINURL     = "https://login.salesforce.com";
     static final String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
     static final String CLIENTID     = "3MVG9mIli7ewofGvDL7SHxI25zTKnJ.bGQw.FdgZHK0GYD4h4nYFUsVtXMFBTYQvCwRi2zzJMnBDJ.XAVBCj4";
-    static final String CLIENTSECRET = "2949080712338965300";
+    static final String CLIENTSECRET = "2949080712338965300";*/
 	
-	/*static final String USERNAME     = "saahir@intnet.mu.mytrailhead";
+	static final String USERNAME     = "saahir@intnet.mu.mytrailhead";
     static final String PASSWORD     = "ShahTrailhead_000KHB1uHYpTtlhUCcOCNbU9BVar";
     static final String LOGINURL     = "https://login.salesforce.com";
     static final String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
     static final String CLIENTID     = "3MVG9fTLmJ60pJ5LGPsq1bC62J9xkMwmkWqhBCllwqD7oLpqFThCbmvShnkWqMp6ZYB6HBp.gRjuKiQWeRhPr";
-    static final String CLIENTSECRET = "3160755402294534733";*/
+    static final String CLIENTSECRET = "3160755402294534733";
 	
     private static String REST_ENDPOINT = "/services/data" ;
     private static String API_VERSION = "/v43.0" ;
