@@ -100,7 +100,7 @@ public class EchoApplication {
 		final String followedUserId = event.getSource().getUserId();
 		
 		LineMessagingClient client = LineMessagingClient
-		        .builder("KvPdRVx9Zhye3c74GhvJ2u6HtyUgJFuZSKU22wD8IfodRKhBsw4fdkSey0q/xsa/VuPBrA9shefDEn49yb4xo8Yy6sPF1izTfsgnfmm1aU4hrZgBOQasXMZwHvRdFcvupcGeFxZd1/JeVrWd6V54QwdB04t89/1O/w1cDnyilFU=")
+		        .builder("xek2iwmWimLG0rtOWz7TebqQI8Z/4N95jJaRIuN6/q3kg4nw8ntNaKVd6H8YKpgQXkOQzHWpsVIb7SvJePKCb0WEQD4Ugj31lw8LHjNwJVPkGL+WZloVuSwepuUJDmV69YZ5XyojOyjaCSMBISDf4QdB04t89/1O/w1cDnyilFU=")
 		        .build();
 		UserProfileResponse userProfileResponse = null;
 		try {
