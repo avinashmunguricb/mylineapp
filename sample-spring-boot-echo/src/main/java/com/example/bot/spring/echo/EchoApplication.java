@@ -137,8 +137,8 @@ public class EchoApplication {
 		String botReplyMessage = "Command not recognized !\nHere are a list of keywords : \n";
 		Map<String, String> mapA = new HashMap<>();
 		mapA.put("Hello", "Hello, How can i help you ?");
-		mapA.put("Medical1", "The medical 1 test");
-		mapA.put("Medical2", "The medical 2 test");
+		mapA.put("Fever", "Pren 2 panadol al dormi.");
+		mapA.put("Headache", "Met de l'huile dans latet.");
 		mapA.put("Medical3", "The medical 3 test");
 		mapA.put("Medical4", "The medical 4 test");
 		mapA.put("Medical5", "The medical 5 test");
