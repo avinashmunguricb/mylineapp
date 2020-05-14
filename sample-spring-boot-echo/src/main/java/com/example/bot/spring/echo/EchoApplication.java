@@ -71,12 +71,20 @@ public class EchoApplication {
     static final String CLIENTID     = "3MVG9mIli7ewofGvDL7SHxI25zTKnJ.bGQw.FdgZHK0GYD4h4nYFUsVtXMFBTYQvCwRi2zzJMnBDJ.XAVBCj4";
     static final String CLIENTSECRET = "2949080712338965300";*/
 	
-	static final String USERNAME     = "saahir@intnet.mu.mytrailhead";
+	/*static final String USERNAME     = "saahir@intnet.mu.mytrailhead";
     static final String PASSWORD     = "ShahTrailhead_0068JiYLAVj0rR0l5umJ9qks3UM";
     static final String LOGINURL     = "https://login.salesforce.com";
     static final String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
     static final String CLIENTID     = "3MVG9fTLmJ60pJ5LGPsq1bC62J9xkMwmkWqhBCllwqD7oLpqFThCbmvShnkWqMp6ZYB6HBp.gRjuKiQWeRhPr";
-    static final String CLIENTSECRET = "3160755402294534733";
+    static final String CLIENTSECRET = "3160755402294534733";*/
+	
+	static final String USERNAME     = "avinashdev@bfl.com";
+    static final String PASSWORD     = "Icb2020!hTwCecjLy5CgNIzySYM5ADVi";
+    static final String LOGINURL     = "https://login.salesforce.com";
+    static final String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
+    static final String CLIENTID     = "3MVG9tzQRhEbH_K3zybNqWflnBsO7fCdlj.OEPy0Fr4_UFecxynREpXkTsd7.kHoWjLl04zHeOlElFWBuZBU0";
+    static final String CLIENTSECRET = "32A054E23EB9B521297338EEDAEA9AAC0C7A0B442B4B24E16172A7B1B38AB2E6";
+	
 	
     private static String REST_ENDPOINT = "/services/data" ;
     private static String API_VERSION = "/v43.0" ;
@@ -100,7 +108,7 @@ public class EchoApplication {
 		final String followedUserId = event.getSource().getUserId();
 		
 		LineMessagingClient client = LineMessagingClient
-		        .builder("xek2iwmWimLG0rtOWz7TebqQI8Z/4N95jJaRIuN6/q3kg4nw8ntNaKVd6H8YKpgQXkOQzHWpsVIb7SvJePKCb0WEQD4Ugj31lw8LHjNwJVPkGL+WZloVuSwepuUJDmV69YZ5XyojOyjaCSMBISDf4QdB04t89/1O/w1cDnyilFU=")
+		        .builder("QbB2chPapgv5in9vOaYU1lSkostcLtnOclfmtRhkiucpGQERPD3jzHehiAW+9urDtgVu3ra0MGc+GXNgffshy5xcEdCJFVQTiRFdq8EfMEiNRtDg71X1oUx1cpnbAuMPtlWVSydhqiizYZ9jJ5OETgdB04t89/1O/w1cDnyilFU=")
 		        .build();
 		UserProfileResponse userProfileResponse = null;
 		try {
