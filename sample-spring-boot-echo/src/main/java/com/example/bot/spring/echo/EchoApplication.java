@@ -79,7 +79,7 @@ public class EchoApplication {
     static final String CLIENTSECRET = "3160755402294534733";*/
 	
 	static final String USERNAME     = "avinashdev@bfl.com";
-    static final String PASSWORD     = "Icb2020!hTwCecjLy5CgNIzySYM5ADVi";
+    static final String PASSWORD     = "Icb2020!UyGWzMwb6HmSbAsxQTkiatcEl";
     static final String LOGINURL     = "https://login.salesforce.com";
     static final String GRANTSERVICE = "/services/oauth2/token?grant_type=password";
     static final String CLIENTID     = "3MVG9tzQRhEbH_K3zybNqWflnBsO7fCdlj.OEPy0Fr4_UFecxynREpXkTsd7.kHoWjLl04zHeOlElFWBuZBU0";
