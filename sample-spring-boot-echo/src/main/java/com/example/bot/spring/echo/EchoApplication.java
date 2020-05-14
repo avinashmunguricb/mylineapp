@@ -151,6 +151,7 @@ public class EchoApplication {
 		mapA.put("Medical4", "The medical 4 test");
 		mapA.put("Medical5", "The medical 5 test");
 		mapA.put("Medical6", "The medical 6 test");
+		mapA.put("Medical7", "The medical 7 test");
 		mapA.put("Thank you", "Your welcome");
 		mapA.put("END", "---Session End---");
 		
